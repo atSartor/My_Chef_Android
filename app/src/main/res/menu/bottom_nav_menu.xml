@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/miFavorites"
+        android:title="Favorites"
+        android:icon="@drawable/ic_favorites" />
+
+    <item
+        android:id="@+id/miPantry"
+        android:title="Pantry"
+        android:icon="@drawable/ic_pantry" />
+
+    <item
+        android:id="@+id/miList"
+        android:title="List"
+        android:icon="@drawable/ic_list" />
+
+    <item
+        android:id="@+id/miMore"
+        android:title="More"
+        android:icon="@drawable/ic_more" />
+
+</menu>
