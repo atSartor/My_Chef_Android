@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/miSearch"
+        android:title="Search"
+        android:icon="@drawable/ic_search" />
+
+    <item
+        android:id="@+id/miFilter"
+        android:title="Filters"
+        android:icon="@drawable/ic_filter" />
+
+    <item
+        android:id="@+id/miIngredient"
+        android:title="Ingredients"
+        android:icon="@drawable/ic_ingredient" />
+
+
+</menu>

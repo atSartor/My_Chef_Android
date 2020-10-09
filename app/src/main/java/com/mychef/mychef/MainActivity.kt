@@ -1,7 +1,9 @@
 package com.mychef.mychef
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -26,7 +28,15 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        val button = findViewById<Button>(R.id.button_search)
+        button.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
 
     private fun setCurrentFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {
