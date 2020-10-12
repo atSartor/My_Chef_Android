@@ -21,4 +21,9 @@
         android:title="More"
         android:icon="@drawable/ic_more" />
 
+    <item
+        android:id="@+id/miSearch"
+        android:title="Search"
+        android:icon="@drawable/ic_search" />
+
 </menu>

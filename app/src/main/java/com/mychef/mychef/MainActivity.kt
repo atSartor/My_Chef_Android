@@ -1,11 +1,15 @@
 package com.mychef.mychef
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val pantryFragment = PantryFragment()
         val listFragment = ListFragment()
         val moreFragment = MoreFragment()
+        val searchFragment = SearchFragment()
 
         setCurrentFragment(favoritesFragment)
 
@@ -23,9 +28,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.miPantry -> setCurrentFragment(pantryFragment)
                 R.id.miList -> setCurrentFragment(listFragment)
                 R.id.miMore -> setCurrentFragment(moreFragment)
+                R.id.miSearch -> startSearch(null, false, null, false)
             }
             true
         }
+
+        /*val button = findViewById<Button>(R.id.search_button)
+        button.setOnClickListener {
+            onSearchRequested()
+        }*/
+
+
     }
 
     private fun setCurrentFragment(fragment: Fragment){
@@ -33,5 +46,15 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.flFragment, fragment)
             commit()
         }
+    }
+
+
+
+    override fun onSearchRequested(): Boolean {
+        val appData = Bundle().apply {
+            //putBoolean(JARGON, true)
+        }
+        startSearch(null, false, null, false)
+        return true
     }
 }
