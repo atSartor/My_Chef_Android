@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+import android.util.JsonReader
 
 class SearchableActivity : AppCompatActivity() {
 
@@ -32,10 +33,12 @@ class SearchableActivity : AppCompatActivity() {
 
         val queue = Volley.newRequestQueue(this)
         val url = "https://mychef-web.herokuapp.com/api/v1/show_recipes?search=$query"
-
+        var i=1
         val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, url, null,
             Response.Listener { response ->
-                textView.text = "%s".format(response.toJSONObject(response).toString())
+                    textView.text = "%s\n".format(response.getJSONObject(1).opt("title")) +
+                            "\t\t\tPreparation Time: %s\n".format(response.getJSONObject(1).opt("total_time")) +
+                            "\t\t\tServings: %s\n".format(response.getJSONObject(1).opt("yields"))
             },
             Response.ErrorListener { error ->
                 textView.text = "That didn't work!"

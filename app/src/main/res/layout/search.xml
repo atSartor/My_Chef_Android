@@ -22,6 +22,7 @@
                 android:id="@+id/searchText"
                 android:layout_width="411dp"
                 android:layout_height="731dp"
+                android:isScrollContainer="true"
                 android:text="Search Results Loading..."
                 android:textSize="30sp" />
         </LinearLayout>
