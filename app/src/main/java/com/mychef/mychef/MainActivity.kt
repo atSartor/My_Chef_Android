@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             onSearchRequested()
         }*/
 
-
     }
 
     private fun setCurrentFragment(fragment: Fragment){
