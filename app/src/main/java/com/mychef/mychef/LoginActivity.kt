@@ -15,6 +15,12 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLEncoder
 
 
 class LoginActivity : AppCompatActivity() {
@@ -85,6 +91,7 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d(TAG, "signInWithCredential: Success")
                     val user = auth.currentUser
+                    backendAuth(idToken)
                     updateUI(user)
                 } else {
                     Log.w(TAG, "signInWithCredential: Failure", task.exception)
@@ -92,6 +99,34 @@ class LoginActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
+    }
+
+    private fun backendAuth(idToken: String) {
+        val TAG = "Backend Auth"
+        var reqParam = URLEncoder.encode("idToken", "UTF-8") + "=" + URLEncoder.encode(idToken, "UTF-8")
+        val mURL = URL("")
+        with(mURL.openConnection() as HttpURLConnection) {
+            requestMethod = "POST"
+
+            val wr = OutputStreamWriter(outputStream)
+            wr.write(reqParam)
+            wr.flush()
+
+            Log.w(TAG, "URL: $url")
+            Log.w(TAG, "Response Code: $responseCode")
+
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+
+                var inputLine = it.readLine()
+                while(inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+                Log.w(TAG, "Response: $response")
+            }
+
+        }
     }
 
     private fun updateUI(user: FirebaseUser?) {
