@@ -2,6 +2,7 @@ package com.mychef.mychef
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -48,15 +49,22 @@ class MainActivity : AppCompatActivity() {
     private class CustomAdapter(context: Context): BaseAdapter() {
 
         private val mContext: Context
+        private val items = arrayListOf<String> (
+                "Onion" , "Carrot" , "Potato" , "Celery"
+            )
 
         init{
             this.mContext = context
         }
 
         override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
-            val textView = TextView(mContext)
-            textView.text = "Here is the testRow"
-            return textView
+            val layoutInflater = LayoutInflater.from(mContext)
+            val rowMain = layoutInflater.inflate(R.layout.main_row, viewGroup, false)
+            val nameTextView = rowMain.findViewById<TextView>(R.id.name_textview)
+            nameTextView.text = items.get(position)
+            val positionTextView = rowMain.findViewById<TextView>(R.id.position_textview)
+            positionTextView.text = "Quantity: $position"
+            return rowMain
         }
 
         override fun getItem(position: Int): Any {
@@ -68,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getCount(): Int {
-            TODO("Not yet implemented")
+            return items.size
         }
 
     }
