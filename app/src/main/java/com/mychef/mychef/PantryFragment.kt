@@ -5,31 +5,32 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.R
 
 class PantryFragment: Fragment(R.layout.fragment_pantry) {
-    val list: MutableList<String> = ArrayList()
-    lateinit var adapter:ArrayAdapter<String>
+    private class CustomAdapter(context: Context): BaseAdapter {
 
-    @Override
-    protected fun onCreate(savedState:Bundle) {
-        super.onCreate(savedState)
-        setContentView(R.layout.fragment_pantry)
-        val lView = findViewById(R.id.ListView) as ListView
-        val itemText = findViewById(R.id.addText) as EditText
-        val addButton = findViewById(R.id.addButton) as Button
-        itemList = arrayListOf()
-        adapter = ArrayAdapter<String>(this@PantryFragment, android.R.layout.simple_list_item_multiple_choice, itemList)
-        val addlistener = object:View.OnClickListener() {
-            fun onClick(v:View) {
-                itemList.add(itemText.getText().toString())
-                itemText.setText("")
-                adapter.notifyDataSetChanged()
-            }
+        private val mContext: Context
+
+        init {
+            this.mContext = context
         }
-        addButton.setOnClickListener(addlistener)
-        lView.setAdapter(adapter)
-    }
+        fun getCount(): Int {
 
+        }
+        fun getItemId(position: Int): Long{
+            return position.toLong()
+        }
+        fun getItem(position: Int): Any{
+            return "TESTING"
+        }
+        fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
+            val textView = TextView(mContext)
+            textView.text = "Test Row for ListView"
+            return textView
+        }
+    }
 }
 
 

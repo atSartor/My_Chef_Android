@@ -1,6 +1,7 @@
 package com.mychef.mychef
 
 import android.os.Bundle
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,7 +37,11 @@ class MainActivity : AppCompatActivity() {
             onSearchRequested()
         }*/
 
+        listView.adapter = CustomAdapter(this)
+
+
     }
+
 
     private fun setCurrentFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {
@@ -44,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
 
 
     override fun onSearchRequested(): Boolean {
