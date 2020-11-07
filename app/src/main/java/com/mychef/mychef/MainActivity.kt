@@ -1,7 +1,12 @@
 package com.mychef.mychef
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,9 +41,35 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             onSearchRequested()
         }*/
-
+        val listView = findViewById<ListView>(R.id.main_listView)
         listView.adapter = CustomAdapter(this)
+    }
 
+    private class CustomAdapter(context: Context): BaseAdapter() {
+
+        private val mContext: Context
+
+        init{
+            this.mContext = context
+        }
+
+        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
+            val textView = TextView(mContext)
+            textView.text = "Here is the testRow"
+            return textView
+        }
+
+        override fun getItem(position: Int): Any {
+            return "TESTING"
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getCount(): Int {
+            TODO("Not yet implemented")
+        }
 
     }
 
