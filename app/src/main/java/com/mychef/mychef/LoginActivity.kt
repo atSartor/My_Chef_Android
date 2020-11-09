@@ -15,6 +15,12 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLEncoder
 
 
 class LoginActivity : AppCompatActivity() {
@@ -85,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d(TAG, "signInWithCredential: Success")
                     val user = auth.currentUser
-                    //backendAuth(idToken)
+                    backendAuth(idToken)
                     updateUI(user)
                 } else {
                     Log.w(TAG, "signInWithCredential: Failure", task.exception)
@@ -95,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-   /* private fun backendAuth(idToken: String) {
+    private fun backendAuth(idToken: String) {
         val TAG = "Backend Auth"
         var reqParam = URLEncoder.encode("idToken", "UTF-8") + "=" + URLEncoder.encode(idToken, "UTF-8")
         val mURL = URL("")
@@ -121,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-    }*/
+    }
 
     private fun updateUI(user: FirebaseUser?) {
         if(user != null) {
