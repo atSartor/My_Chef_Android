@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "683825362168-2e3ipvc6fl0gjo5am74ief9dnsrqk2mp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mychef.mychef",
+            "certificate_hash": "ce3e8d75353fbc2e66439c336d4ea5d2024f226d"
+          }
+        },
+        {
           "client_id": "683825362168-1hcncaf3ncb60boelirv1t90dfir3fja.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
