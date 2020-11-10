@@ -11,6 +11,7 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.list_item.view.*
 import kotlinx.android.synthetic.main.search_item.view.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,17 +24,28 @@ class SearchAdapter(private val list: List<RecipeWI>): RecyclerView.Adapter<MyVi
         return MyViewHolder(inflater, parent)
     }
 
+    private fun changeFavorite(recipe: RecipeWI) {
+        recipe.favorite = !recipe.favorite
+    }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val recipe: RecipeWI = list[position]
         holder.bind(recipe)
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.imageButton2.setOnClickListener{
+            changeFavorite(recipe)
+        }
+        if(recipe.favorite) {holder.itemView.imageButton2.setColorFilter(R.color.colorHeartOn)}
+        else {holder.itemView.imageButton2.setColorFilter(R.color.colorHeartOff)}
+
+        holder.itemView.imageButton3.setOnClickListener{
             val intent = Intent(mcontext, DetailsActivity::class.java)
             intent.putExtra("passtitle", recipe.title)
             intent.putExtra("passtime", recipe.timeToCook)
             intent.putExtra("passyield", recipe.yields)
             intent.putExtra("passingredients", recipe.ingredients)
             intent.putExtra("passphoto", recipe.Photo)
+            intent.putExtra("passdirections", recipe.directions)
             mcontext.startActivity(intent)  }
     }
 

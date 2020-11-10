@@ -18,18 +18,10 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="341dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/chicken" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:backgroundTint="#FFFFFF"
-                app:icon="@drawable/ic_favorites"
-                app:iconTint="#03A9F4" />
         </LinearLayout>
 
         <TextView
@@ -88,21 +80,56 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Ingredients:"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/ingredient_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="24sp" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="Ingredients:"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/ingredient_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="Directions:"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/direction_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,23 +9,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 //import kotlinx.android.synthetic.main.fragment_search.my_search
 import kotlinx.android.synthetic.main.fragment_search.searchRecyclerView
 
-data class RecipeWI(val title: String, val timeToCook: String, val yields: String, val ingredients: String, val Photo: Int)
+data class RecipeWI(val title: String, val timeToCook: String, val yields: String, val ingredients: String, val directions:String, val Photo: Int, var favorite: Boolean)
+
+public val favoriteRecipes = listOf(
+    RecipeWI("Lemon Pepper Chicken Breast", "45 Minutes", "2 servings",
+        "2 chicken breasts \n1 Lemon \n2 tablespoons Lemon Pepper seasoning \nOlive Oil \nSalt \nPepper",
+        "1. Preheat Oven To 425F \n2. Grease baking dish with Olive Oil \n" +
+                "3. Place chicken in dish and season with lemon pepper seasoning, salt, and pepper \n" +
+                "4. Slice 1 Lemon and place slices around chicken \n5.Bake for 35 minutes",
+        R.drawable.chicken, true),
+    RecipeWI("Spaghetti and Meatballs", "30 Minutes", "4 servings",
+        "1 pound ground beef \n1 box cooked spaghetti \nParmesan \nItalian Bread Crumbs " +
+                "\nMarinara Sauce \nGarlic \nOregano \nSalt \nPepper", "", R.drawable.spaghetti, true),
+    RecipeWI("Chocolate Chip Cookies", "60 Minutes", "8 servings","", "", R.drawable.cookies, false),
+    RecipeWI("Bacon and Egg Tacos", "20 Minutes", "2 servings","", "", R.drawable.tacos, false),
+    RecipeWI("Buttermilk Waffles", "30 Minutes", "4 servings","", "",R.drawable.waffles, false)
+)
 
 class SearchFragment: Fragment(R.layout.fragment_search) {
-    // THIS IS DEMO DATA
-    private val favoriteRecipes = listOf(
-        RecipeWI("Lemon Pepper Chicken Breast", "45 Minutes", "2 servings",
-            "2 chicken breasts \n1 Lemon \n2 tablespoons Lemon Pepper seasoning \nOlive Oil \nSalt \nPepper",
-        R.drawable.chicken),
-        RecipeWI("Spaghetti and Meatballs", "30 Minutes", "4 servings",
-        "1 pound ground beef \n1 box cooked spaghetti \nParmesan \nItalian Bread Crumbs " +
-                "\nMarinara Sauce \nGarlic \nOregano \nSalt \nPepper", R.drawable.spaghetti),
-        RecipeWI("Chocolate Chip Cookies", "60 Minutes", "8 servings", "", R.drawable.cookies),
-        RecipeWI("Bacon and Egg Tacos", "20 Minutes", "2 servings", "", R.drawable.tacos),
-        RecipeWI("Buttermilk Waffles", "30 Minutes", "4 servings", "",R.drawable.waffles)
-    )
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
