@@ -1,5 +1,6 @@
 package com.mychef.mychef
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         val listFragment = ListFragment()
         val moreFragment = MoreFragment()
         val searchFragment = SearchFragment()
-        val loginActivity = LoginActivity()
 
         setCurrentFragment(favoritesFragment)
 
@@ -26,15 +26,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.miPantry -> setCurrentFragment(pantryFragment)
                 R.id.miList -> setCurrentFragment(listFragment)
                 R.id.miMore -> setCurrentFragment(moreFragment)
-                R.id.miSearch -> startSearch(null, false, null, false)
+                R.id.miSearch -> setCurrentFragment(searchFragment)
             }
             true
         }
-
-        /*val button = findViewById<Button>(R.id.search_button)
-        button.setOnClickListener {
-            onSearchRequested()
-        }*/
 
     }
 
@@ -43,15 +38,5 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.flFragment, fragment)
             commit()
         }
-    }
-
-
-
-    override fun onSearchRequested(): Boolean {
-        val appData = Bundle().apply {
-            //putBoolean(JARGON, true)
-        }
-        startSearch(null, false, null, false)
-        return true
     }
 }

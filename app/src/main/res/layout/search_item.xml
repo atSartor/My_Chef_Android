@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/detailsB"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imageView"
@@ -38,6 +37,7 @@
             android:paddingLeft="16dp"
             android:text="description"
             android:textSize="18sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +47,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -57,14 +57,13 @@
             tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/imageButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:tint="@color/colorHeartOff"
             app:srcCompat="@drawable/ic_more"
             tools:ignore="VectorDrawableCompat" />
-
     </LinearLayout>
 
 </LinearLayout>
