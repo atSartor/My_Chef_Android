@@ -46,4 +46,5 @@ class SearchableActivity : AppCompatActivity() {
         )
         queue.add(jsonArrayRequest)
     }
+
 }

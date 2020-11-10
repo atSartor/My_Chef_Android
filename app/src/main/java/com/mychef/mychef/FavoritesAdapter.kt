@@ -12,12 +12,10 @@ class FavoritesAdapter(private val list: List<Recipe>): RecyclerView.Adapter<Cus
         val inflater = LayoutInflater.from(parent.context)
         return CustomViewHolder(inflater, parent)
     }
-
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val recipe: Recipe = list[position]
         holder.bind(recipe)
     }
-
     override fun getItemCount(): Int = list.size
 }
 
@@ -35,4 +33,5 @@ class CustomViewHolder(inflater: LayoutInflater, parent: ViewGroup)
         mTitleView?.text = recipe.title
         mCookTimeView?.text = recipe.timeToCook
     }
+
 }
