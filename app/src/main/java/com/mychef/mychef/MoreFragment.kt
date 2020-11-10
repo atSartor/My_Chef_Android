@@ -26,5 +26,6 @@ class MoreFragment: Fragment (R.layout.fragment_more) {
         // Return the fragment view/layout
         return view
     }
+
 }
 
