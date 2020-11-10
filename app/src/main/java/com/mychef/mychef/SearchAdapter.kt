@@ -33,6 +33,7 @@ class SearchAdapter(private val list: List<RecipeWI>): RecyclerView.Adapter<MyVi
             intent.putExtra("passtime", recipe.timeToCook)
             intent.putExtra("passyield", recipe.yields)
             intent.putExtra("passingredients", recipe.ingredients)
+            intent.putExtra("passphoto", recipe.Photo)
             mcontext.startActivity(intent)  }
     }
 

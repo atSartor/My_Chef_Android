@@ -15,11 +15,11 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
     // THIS IS DEMO DATA
     private val favoriteRecipes = listOf(
         RecipeWI("Lemon Pepper Chicken Breast", "45 Minutes", "2 servings",
-            "2 chicken breasts \n 1 Lemon \n 2 tablespoons Lemon Pepper seasoning \n Olive Oil \n Salt \n Pepper",
+            "2 chicken breasts \n1 Lemon \n2 tablespoons Lemon Pepper seasoning \nOlive Oil \nSalt \nPepper",
         R.drawable.chicken),
         RecipeWI("Spaghetti and Meatballs", "30 Minutes", "4 servings",
-        "1 pound ground beef \n 1 box cooked spaghetti \n Parmesan \n Italian Bread Crumbs " +
-                "\n Marinara Sauce \n Garlic \n Oregano \n Salt \n Pepper", R.drawable.spaghetti),
+        "1 pound ground beef \n1 box cooked spaghetti \nParmesan \nItalian Bread Crumbs " +
+                "\nMarinara Sauce \nGarlic \nOregano \nSalt \nPepper", R.drawable.spaghetti),
         RecipeWI("Chocolate Chip Cookies", "60 Minutes", "8 servings", "", R.drawable.cookies),
         RecipeWI("Bacon and Egg Tacos", "20 Minutes", "2 servings", "", R.drawable.tacos),
         RecipeWI("Buttermilk Waffles", "30 Minutes", "4 servings", "",R.drawable.waffles)

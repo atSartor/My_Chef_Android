@@ -15,6 +15,6 @@ class DetailsActivity : AppCompatActivity() {
         time_text.text = intent.extras!!.getString("passtime")!!
         yield_text.text = intent.extras!!.getString("passyield")!!
         ingredient_text.text = intent.extras!!.getString("passingredients")!!
-
+        imageView2.setImageResource(intent.extras!!.getInt("passphoto")!!)
     }
 }

@@ -14,16 +14,12 @@ data class Recipe(val title: String, val timeToCook: String)
 class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
     // THIS IS DEMO DATA
     private val favoriteRecipes = listOf(
-        Recipe("Lemon Pepper Chicken Breast", "45 Minutes"),
-        Recipe("Spaghetti and Meatballs", "30 Minutes"),
-        Recipe("Chocolate Chip Cookies", "60 Minutes"),
-        Recipe("Bacon and Egg Tacos", "20 Minutes"),
-        Recipe("Buttermilk Waffles", "30 Minutes"),
-        Recipe("Hello world", "Foo bar"),
-        Recipe("Hello world", "Foo bar"),
-        Recipe("Hello world", "Foo bar"),
-        Recipe("Hello world", "Foo bar"),
-        Recipe("Hello world", "Foo bar")
+        RecipeWI("Lemon Pepper Chicken Breast", "45 Minutes", "2 servings",
+            "2 chicken breasts \n1 Lemon \n2 tablespoons Lemon Pepper seasoning \nOlive Oil \nSalt \nPepper",
+            R.drawable.chicken),
+        RecipeWI("Spaghetti and Meatballs", "30 Minutes", "4 servings",
+            "1 pound ground beef \n1 box cooked spaghetti \nParmesan \nItalian Bread Crumbs " +
+                    "\nMarinara Sauce \nGarlic \nOregano \nSalt \nPepper", R.drawable.spaghetti)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
