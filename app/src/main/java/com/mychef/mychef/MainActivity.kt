@@ -44,9 +44,6 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
-
-
     override fun onSearchRequested(): Boolean {
         val appData = Bundle().apply {
             //putBoolean(JARGON, true)
@@ -54,4 +51,5 @@ class MainActivity : AppCompatActivity() {
         startSearch(null, false, null, false)
         return true
     }
+
 }
