@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
 //import kotlinx.android.synthetic.main.fragment_search.my_search
 import kotlinx.android.synthetic.main.fragment_search.searchRecyclerView
 
@@ -20,7 +23,10 @@ public val favoriteRecipes = listOf(
         R.drawable.chicken, true),
     RecipeWI("Spaghetti and Meatballs", "30 Minutes", "4 servings",
         "1 pound ground beef \n1 box cooked spaghetti \nParmesan \nItalian Bread Crumbs " +
-                "\nMarinara Sauce \nGarlic \nOregano \nSalt \nPepper", "", R.drawable.spaghetti, true),
+                "\nMarinara Sauce \nGarlic \nOregano \nSalt \nPepper", "1. Preheat Oven To 350F \n2. Grease cookie sheet \n" +
+                "3. Combine ground beef, parmesan, bread crumbs, garlic, oregano, salt, and pepper \n" +
+                "4. Shape into 1 inch balls and place on cookie sheet \n5.Bake for 20 minutes, flipping halfway through \n" +
+                "6. Add cooked noodles, meatballs, and marinara to a saucepan\n7.Sautee together for 5 minutes and serve", R.drawable.spaghetti, true),
     RecipeWI("Chocolate Chip Cookies", "60 Minutes", "8 servings","", "", R.drawable.cookies, false),
     RecipeWI("Bacon and Egg Tacos", "20 Minutes", "2 servings","", "", R.drawable.tacos, false),
     RecipeWI("Buttermilk Waffles", "30 Minutes", "4 servings","", "",R.drawable.waffles, false)
@@ -40,30 +46,27 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_search, container, false)
 
-    /*private fun doMySearch(query: String):List<Recipe> {
-        var recipes = emptyList<Recipe>() as MutableList<Recipe>
-        val queue = Volley.newRequestQueue(this.context)
+    /*private fun doMySearch(query: String):List<RecipeWI> {
+        var recipes = listOf(RecipeWI("","","","","",1,false))
         val url = "https://mychef-web.herokuapp.com/api/v1/show_recipes?search=$query"
-        var i=1
+        //var i=1
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
-
-                var title = "%s\n".format(response.getJSONObject(1).opt("title"))
-                var other = "\t\t\tPreparation Time: %s\n".format(response.getJSONObject(1).opt("total_time")) +
-                        "\t\t\tServings: %s\n".format(response.getJSONObject(1).opt("yields"))
-                recipes.add(Recipe(title,other))
+                recipes= listOf(RecipeWI("%s".format(response.getJSONObject(1).opt("title")),
+                    "%s".format(response.getJSONObject(1).opt("total_time")),
+                    "%s".format(response.getJSONObject(1).opt("yields")),
+                    "","",R.drawable.spaghetti,false))
                 //i++
             },
             Response.ErrorListener { error ->
-                var title = "That didn't work!"
-                var other = "Try Again"
-                recipes.add(Recipe(title, other))
+                recipes= listOf(RecipeWI("That didn't work",
+                    "Error",
+                    "Try again",
+                    "","",R.drawable.spaghetti,false))
             }
         )
-        queue.add(jsonArrayRequest)
-        var results = listOf<Recipe>(recipes[0])
-        return results
+        return recipes
     }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,7 +75,7 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
         searchRecyclerView.apply {
             // set a LinearLayoutManager to handle Android
             layoutManager = LinearLayoutManager(activity)
-
+            //var results = doMySearch("")
             adapter = SearchAdapter(favoriteRecipes)
             /*my_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
