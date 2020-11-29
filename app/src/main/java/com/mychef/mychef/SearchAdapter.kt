@@ -2,19 +2,13 @@ package com.mychef.mychef
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_item.view.*
 import kotlinx.android.synthetic.main.search_item.view.*
-import java.util.*
-import kotlin.collections.ArrayList
+
 lateinit var mcontext: Context
 // Need to provide a custom viewholder class
 class SearchAdapter(private val list: List<RecipeWI>): RecyclerView.Adapter<MyViewHolder>() {
