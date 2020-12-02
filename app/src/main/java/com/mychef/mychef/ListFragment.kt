@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -34,12 +33,12 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-data class Recipe(val id: String, val text: String, val date: LocalDate)
+data class Recipe(val id: String, val ingredient: String, val date: LocalDate)
 
 class ListFragmentAdapter(val onClick: (Recipe) -> Unit) :
     RecyclerView.Adapter<ListFragmentAdapter.ListFragRecipesViewHolder>() {
 
-    val events = mutableListOf<Recipe>()
+    val recipes = mutableListOf<Recipe>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFragRecipesViewHolder {
         return ListFragRecipesViewHolder(
@@ -48,33 +47,33 @@ class ListFragmentAdapter(val onClick: (Recipe) -> Unit) :
     }
 
     override fun onBindViewHolder(viewHolder: ListFragRecipesViewHolder, position: Int) {
-        viewHolder.bind(events[position])
+        viewHolder.bind(recipes[position])
     }
 
-    override fun getItemCount(): Int = events.size
+    override fun getItemCount(): Int = recipes.size
 
     inner class ListFragRecipesViewHolder(private val binding: ListFragRecipeItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             itemView.setOnClickListener {
-                onClick(events[bindingAdapterPosition])
+                onClick(recipes[bindingAdapterPosition])
             }
         }
 
         fun bind(recipe: Recipe) {
-            binding.itemRecipeText.text = recipe.text
+            binding.itemRecipeText.text = recipe.ingredient
         }
     }
 }
 
 class ListFragment : Fragment(R.layout.fragment_list) {
 
-    private val eventsAdapter = ListFragmentAdapter {
+    private val ingredientAdapter = ListFragmentAdapter {
         AlertDialog.Builder(requireContext())
-            .setMessage("Delete this recipe?")
+            .setMessage("Delete this ingredient?")
             .setPositiveButton("Delete") { _, _ ->
-                deleteEvent(it)
+                deleteRecipe(it)
             }
             .setNegativeButton("Close", null)
             .show()
@@ -90,10 +89,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             addView(editText, FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT))
         }
         AlertDialog.Builder(requireContext())
-            .setTitle("Enter recipe title")
+            .setTitle("Enter ingredient name")
             .setView(layout)
             .setPositiveButton("Save") { _, _ ->
-                saveEvent(editText.text.toString())
+                saveRecipe(editText.text.toString())
                 // Prepare EditText for reuse.
                 editText.setText("")
             }
@@ -118,7 +117,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     private val titleSameYearFormatter = DateTimeFormatter.ofPattern("MMMM")
     private val titleFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
     private val selectionFormatter = DateTimeFormatter.ofPattern("d MMM yyyy")
-    private val events = mutableMapOf<LocalDate, List<Recipe>>()
+    private val recipes = mutableMapOf<LocalDate, List<Recipe>>()
 
     private lateinit var binding: FragmentListBinding
 
@@ -127,7 +126,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         binding = FragmentListBinding.bind(view)
         binding.listFragRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            adapter = eventsAdapter
+            adapter = ingredientAdapter
             addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         }
 
@@ -140,7 +139,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         if (savedInstanceState == null) {
             binding.listFragCalendar.post {
-                // Show today's events initially.
+                // Show today's ingredients initially.
                 selectDate(today)
             }
         }
@@ -182,7 +181,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                         else -> {
                             textView.setTextColorRes(R.color.list_frag_black)
                             textView.background = null
-                            dotView.isVisible = events[day.date].orEmpty().isNotEmpty()
+                            dotView.isVisible = recipes[day.date].orEmpty().isNotEmpty()
                         }
                     }
                 } else {
@@ -193,12 +192,6 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         }
 
         binding.listFragCalendar.monthScrollListener = {
-//            homeActivityToolbar.title = if (it.year == today.year) {
-//                titleSameYearFormatter.format(it.yearMonth)
-//            } else {
-//                titleFormatter.format(it.yearMonth)
-//            }
-
             // Select the first day of the month when
             // we scroll to a new month.
             selectDate(it.yearMonth.atDay(1))
@@ -236,41 +229,31 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         }
     }
 
-    private fun saveEvent(text: String) {
+    private fun saveRecipe(text: String) {
         if (text.isBlank()) {
             Toast.makeText(requireContext(), "No Text", Toast.LENGTH_LONG).show()
         } else {
             selectedDate?.let {
-                events[it] = events[it].orEmpty().plus(Recipe(UUID.randomUUID().toString(), text, it))
+                recipes[it] =
+                    recipes[it].orEmpty().plus(Recipe(UUID.randomUUID().toString(), text, it))
                 updateAdapterForDate(it)
             }
         }
     }
 
-    private fun deleteEvent(recipe: Recipe) {
+    private fun deleteRecipe(recipe: Recipe) {
         val date = recipe.date
-        events[date] = events[date].orEmpty().minus(recipe)
+        recipes[date] = recipes[date].orEmpty().minus(recipe)
         updateAdapterForDate(date)
     }
 
     private fun updateAdapterForDate(date: LocalDate) {
-        eventsAdapter.apply {
-            events.clear()
-            events.addAll(this@ListFragment.events[date].orEmpty())
+        ingredientAdapter.apply {
+            recipes.clear()
+            recipes.addAll(this@ListFragment.recipes[date].orEmpty())
             notifyDataSetChanged()
         }
         binding.listFragSelectedDateText.text = selectionFormatter.format(date)
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        homeActivityToolbar.setBackgroundColor(requireContext().getColorCompat(R.color.example_3_toolbar_color))
-//        requireActivity().window.statusBarColor = requireContext().getColorCompat(R.color.example_3_statusbar_color)
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        homeActivityToolbar.setBackgroundColor(requireContext().getColorCompat(R.color.colorPrimary))
-//        requireActivity().window.statusBarColor = requireContext().getColorCompat(R.color.colorPrimaryDark)
-//    }
 }
