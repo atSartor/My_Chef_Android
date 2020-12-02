@@ -17,6 +17,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+    buildFeatures {
+        viewBinding = true
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     buildTypes {
         release {

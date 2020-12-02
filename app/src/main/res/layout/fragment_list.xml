@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment">
 
-    <TextView
-        android:id="@+id/tvListFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -55,7 +41,7 @@
                 tools:text="7 Jan, 2019" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/exThreeRv"
+                android:id="@+id/listFragRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
@@ -69,7 +55,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="120dp"
         app:tint="@color/white"
         app:backgroundTint="@color/colorAccent"
         app:srcCompat="@drawable/ic_add"
