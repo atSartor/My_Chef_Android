@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListFragment">
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".ListFragment"
+    android:tag="ListFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -58,7 +63,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="120dp"
         app:tint="@color/white"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="@color/list_frag_blue"
         app:srcCompat="@drawable/ic_add"
         tools:ignore="VectorDrawableCompat" />
 

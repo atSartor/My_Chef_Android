@@ -45,11 +45,11 @@ class MainActivityTest {
         onView(withId(R.id.miPantry)).perform(click())
         onView(withId(R.id.tvPantryFragment)).check(matches(withText("Pantry")))
     }
-    @Test
-    fun checkListNavigation(){
-        onView(withId(R.id.miList)).perform(click())
-        onView(withId(R.id.tvListFragment)).check(matches(withText("List")))
-    }
+//    @Test
+//    fun checkListNavigation(){
+//        onView(withId(R.id.miList)).perform(click())
+//        onView(withId(R.id.tv)).check(matches(withText("List")))
+//    }
     @Test
     fun checkMoreNavigation(){
         onView(withId(R.id.miMore)).perform(click())

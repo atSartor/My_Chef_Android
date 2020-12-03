@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.FileProvider
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -28,6 +29,10 @@ import com.mychef.mychef.databinding.ListFragCalendarDayBinding
 import com.mychef.mychef.databinding.ListFragCalendarHeaderBinding
 import com.mychef.mychef.databinding.ListFragRecipeItemViewBinding
 import com.mychef.mychef.databinding.FragmentListBinding
+import id.jasoet.funpdf.HtmlToPdf
+import id.jasoet.funpdf.PageOrientation
+import java.io.File
+import java.nio.file.Paths
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -240,6 +245,30 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             }
         }
     }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    private fun generatePdfShare() {
+//        val pdf by lazy {
+//            HtmlToPdf(executable = "/usr/bin/wkhtmltopdf") {
+//                orientation(PageOrientation.LANDSCAPE)
+//                pageSize("Letter")
+//                marginTop("1in")
+//                marginBottom("1in")
+//                marginLeft("1in")
+//                marginRight("1in")
+//            }
+//        }
+//        val htmlString = "<html><body><h1>Hello World</h1></body></html>"
+//
+//        val outputFile = Paths.get(context?.filesDir?.parentFile?.path)
+//        val inputStream = pdf.convert(input = htmlString,output = outputFile) // will always return null if output is redirecte
+//        val shareIntent = Intent().apply {
+//            this.action = Intent.ACTION_SEND
+//            this.putExtra(Intent.EXTRA_STREAM,Uri.fromFile())
+//            this.type = "application/pdf"
+//
+//        }
+//    }
 
     private fun deleteRecipe(recipe: Recipe) {
         val date = recipe.date
