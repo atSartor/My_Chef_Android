@@ -73,24 +73,15 @@
                     app:srcCompat="@android:drawable/ic_input_add"
                     tools:ignore="VectorDrawableCompat" />
 
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_menu_delete"
-                    tools:ignore="VectorDrawableCompat" />
-
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/minusButton"
                 android:layout_width="55dp"
                 android:layout_height="52dp"
-                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                 app:srcCompat="@android:drawable/btn_minus"
                 tools:ignore="VectorDrawableCompat" />
         </androidx.constraintlayout.widget.ConstraintLayout>
